@@ -11,15 +11,22 @@
       type="text/css"
     />
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <style> 
+      .active {
+        background: #ff0000a4;
+        color:white;
+      }
+    </style>
   </head>
   <body>
-    <header class="container m-auto flex justify-between gap-5 py-4 items-center">
+    <header class="container m-auto px-5 flex justify-between gap-5 py-4 items-center">
       <div class="logo w-[150px]" >
         <img src="images/Logo.png" alt="">
       </div>
       <div class="serchber">
         <label class="input input-bordered flex items-center gap-2">
-          <input type="text" class="grow" placeholder="Search" />
+          <input  id="search" type="text" class="grow" placeholder="Search" />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
@@ -39,14 +46,17 @@
 
     <section  class="flex justify-center py-2">
       <div id="catagory" class="flex gap-5">
+        <button class="btn catagory active">All</button>
       </div>
     </section>
 
+    
 
-
-    <section id="vedios" class="container mt-5 m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 ">
-      
+    <section class="container m-auto px-5 ">
+      <div  id="vedios" class="grid grid-cols-1 my-5 md:grid-cols-2 lg:grid-cols-4 gap-5 "></div>
     </section>
+
+    <div id="modal-container"></div>
 
     <script src="js/contom.js"></script>
   </body>
