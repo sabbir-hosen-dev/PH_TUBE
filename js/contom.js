@@ -9,31 +9,30 @@ const catagory = async () => {
     console.error(err);
   }
 };
+let btnLength = 0;
 
 const catagoryBtn = (data) => {
   const btnContainer = document.getElementById("catagory");
   data.map((btn) => {
     const button = document.createElement("button");
-    button.innerHTML = `
-      <button class="btn catagory ">${btn.category} </button>
-    `;
+    button.innerHTML =  btn.category
+    button.classList.add("btn", "catagory")
+    ;
     button.onclick = () =>{ 
+      for(let i = 0; i < btns.length; i++){
+        btns[i].classList.remove("active");
+      }
       loadCategoryVideos(btn.category_id)
-    
+      button.classList.add("active")
     };
     btnContainer.appendChild(button);
-
+    
   });
 };
 
 const btns = document.getElementsByClassName("catagory");
 
-for(let i = 0; i < btns.length; i++){
-  btns[i].classList.remove("active");
-  btns[i].addEventListener("click",() => {
-    console.log("hi")
-  })
-}
+
 
 const loadCategoryVideos = async (id) => {
   const res = await fetch(
@@ -104,7 +103,6 @@ const showDetels = (id) => {
 const displayVedios = (data) => {
   const vediosDiv = document.getElementById("vedios");
   vediosDiv.innerHTML = "";
-
   if (data.length === 0) {
     const emtydiv = document.createElement("div");
     vediosDiv.classList.remove("grid");
@@ -181,6 +179,20 @@ input.addEventListener("keyup", (e) => {
     .then((res) => res.json())
     .then((data) => displayVedios(data.videos));
 });
+
+const allBtn = document.getElementById("allBtn");
+allBtn.addEventListener("click", () => {
+  loadALlVedios();
+
+  for(let i = 0; i < btns.length; i++){
+    btns[i].classList.remove("active");
+    btns[i].addEventListener("click",() => {
+      console.log("hi")
+    })
+    console.log(i)
+  }
+  allBtn.classList.add("active")
+})
 
 catagory();
 loadALlVedios();
